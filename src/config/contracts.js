@@ -3,327 +3,366 @@ import { polygonMumbai } from 'wagmi/chains';
 const CONTRACTS_DICTIONARY = {
   [polygonMumbai.id]: {
     // WHITELIST contract
-    address: '0x5ec59EA2F06f44Ff241D76058688835AFf218A60',
+    address: '0xECb361d53b023660C1e3ad5d90B708fdF2093EBd',
     abi: [
       {
-        anonymous: false,
-        inputs: [
+        "anonymous": false,
+        "inputs": [
           {
-            indexed: false,
-            internalType: 'uint8',
-            name: 'version',
-            type: 'uint8',
-          },
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
         ],
-        name: 'Initialized',
-        type: 'event',
+        "name": "Blacklisted",
+        "type": "event"
       },
       {
-        anonymous: false,
-        inputs: [
+        "anonymous": false,
+        "inputs": [
           {
-            indexed: true,
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
-          },
-          {
-            indexed: true,
-            internalType: 'bytes32',
-            name: 'previousAdminRole',
-            type: 'bytes32',
-          },
-          {
-            indexed: true,
-            internalType: 'bytes32',
-            name: 'newAdminRole',
-            type: 'bytes32',
-          },
+            "indexed": false,
+            "internalType": "uint8",
+            "name": "version",
+            "type": "uint8"
+          }
         ],
-        name: 'RoleAdminChanged',
-        type: 'event',
+        "name": "Initialized",
+        "type": "event"
       },
       {
-        anonymous: false,
-        inputs: [
+        "anonymous": false,
+        "inputs": [
           {
-            indexed: true,
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
           },
           {
-            indexed: true,
-            internalType: 'address',
-            name: 'account',
-            type: 'address',
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "previousAdminRole",
+            "type": "bytes32"
           },
           {
-            indexed: true,
-            internalType: 'address',
-            name: 'sender',
-            type: 'address',
-          },
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newAdminRole",
+            "type": "bytes32"
+          }
         ],
-        name: 'RoleGranted',
-        type: 'event',
+        "name": "RoleAdminChanged",
+        "type": "event"
       },
       {
-        anonymous: false,
-        inputs: [
+        "anonymous": false,
+        "inputs": [
           {
-            indexed: true,
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
           },
           {
-            indexed: true,
-            internalType: 'address',
-            name: 'account',
-            type: 'address',
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
           },
           {
-            indexed: true,
-            internalType: 'address',
-            name: 'sender',
-            type: 'address',
-          },
+            "indexed": true,
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          }
         ],
-        name: 'RoleRevoked',
-        type: 'event',
+        "name": "RoleGranted",
+        "type": "event"
       },
       {
-        inputs: [],
-        name: 'DEFAULT_ADMIN_ROLE',
-        outputs: [
+        "anonymous": false,
+        "inputs": [
           {
-            internalType: 'bytes32',
-            name: '',
-            type: 'bytes32',
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
           },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+          }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "RoleRevoked",
+        "type": "event"
       },
       {
-        inputs: [],
-        name: 'WHITELIST_ROLE',
-        outputs: [
+        "anonymous": false,
+        "inputs": [
           {
-            internalType: 'bytes32',
-            name: '',
-            type: 'bytes32',
-          },
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "Whitelisted",
+        "type": "event"
       },
       {
-        inputs: [
+        "inputs": [],
+        "name": "DEFAULT_ADMIN_ROLE",
+        "outputs": [
           {
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
-          },
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
         ],
-        name: 'getRoleAdmin',
-        outputs: [
-          {
-            internalType: 'bytes32',
-            name: '',
-            type: 'bytes32',
-          },
-        ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [],
+        "name": "WHITELIST_ROLE",
+        "outputs": [
           {
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'uint256',
-            name: 'index',
-            type: 'uint256',
-          },
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
         ],
-        name: 'getRoleMember',
-        outputs: [
-          {
-            internalType: 'address',
-            name: '',
-            type: 'address',
-          },
-        ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
-          },
+            "internalType": "address",
+            "name": "_account",
+            "type": "address"
+          }
         ],
-        name: 'getRoleMemberCount',
-        outputs: [
-          {
-            internalType: 'uint256',
-            name: '',
-            type: 'uint256',
-          },
-        ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "blacklist",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'address',
-            name: 'account',
-            type: 'address',
-          },
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          }
         ],
-        name: 'grantRole',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "getRoleAdmin",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
           },
           {
-            internalType: 'address',
-            name: 'account',
-            type: 'address',
-          },
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
         ],
-        name: 'hasRole',
-        outputs: [
-          {
-            internalType: 'bool',
-            name: '',
-            type: 'bool',
-          },
-        ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "grantRole",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        inputs: [],
-        name: 'initialize',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "hasRole",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'address',
-            name: 'account',
-            type: 'address',
-          },
+            "internalType": "address",
+            "name": "_verifier",
+            "type": "address"
+          }
         ],
-        name: 'renounceRole',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'bytes32',
-            name: 'role',
-            type: 'bytes32',
-          },
-          {
-            internalType: 'address',
-            name: 'account',
-            type: 'address',
-          },
+            "internalType": "address",
+            "name": "_account",
+            "type": "address"
+          }
         ],
-        name: 'revokeRole',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "isWhitelisted",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'address',
-            name: '_verifier',
-            type: 'address',
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
           },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
         ],
-        name: 'setVerifier',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "renounceRole",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'bytes4',
-            name: 'interfaceId',
-            type: 'bytes4',
+            "internalType": "bytes32",
+            "name": "role",
+            "type": "bytes32"
           },
-        ],
-        name: 'supportsInterface',
-        outputs: [
           {
-            internalType: 'bool',
-            name: '',
-            type: 'bool',
-          },
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "revokeRole",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        inputs: [],
-        name: 'version',
-        outputs: [
+        "inputs": [
           {
-            internalType: 'uint32',
-            name: '',
-            type: 'uint32',
-          },
+            "internalType": "address",
+            "name": "_verifier",
+            "type": "address"
+          }
         ],
-        stateMutability: 'pure',
-        type: 'function',
+        "name": "setVerifier",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        inputs: [
+        "inputs": [
           {
-            internalType: 'bytes',
-            name: '_purefidata',
-            type: 'bytes',
-          },
+            "internalType": "bytes4",
+            "name": "interfaceId",
+            "type": "bytes4"
+          }
         ],
-        name: 'whitelistForWithKYCPurefi2',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "supportsInterface",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
       },
+      {
+        "inputs": [],
+        "name": "version",
+        "outputs": [
+          {
+            "internalType": "uint32",
+            "name": "",
+            "type": "uint32"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_account",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes",
+            "name": "_purefidata",
+            "type": "bytes"
+          }
+        ],
+        "name": "whitelistForWithKYCPurefi",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_purefidata",
+            "type": "bytes"
+          }
+        ],
+        "name": "whitelistWithKYCPurefi",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
     ],
   },
 };

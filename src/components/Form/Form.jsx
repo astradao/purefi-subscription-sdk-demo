@@ -57,7 +57,7 @@ const TheForm = () => {
 
   const { contractLoading, write } = useContract(
     contractData,
-    'whitelistForWithKYCPurefi2'
+    'whitelistWithKYCPurefi'
   );
 
   const loading = signLoading || verifyLoading || contractLoading;
