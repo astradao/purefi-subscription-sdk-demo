@@ -3,7 +3,7 @@ import { polygonMumbai } from 'wagmi/chains';
 const CONTRACTS_DICTIONARY = {
   [polygonMumbai.id]: {
     // WHITELIST contract
-    address: '0xECb361d53b023660C1e3ad5d90B708fdF2093EBd',
+    address: '0xBfD9ab41D165F73FCA01b70F3e1A048FA8efC96a',
     abi: [
       {
         "anonymous": false,
@@ -36,24 +36,18 @@ const CONTRACTS_DICTIONARY = {
         "inputs": [
           {
             "indexed": true,
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
           },
           {
             "indexed": true,
-            "internalType": "bytes32",
-            "name": "previousAdminRole",
-            "type": "bytes32"
-          },
-          {
-            "indexed": true,
-            "internalType": "bytes32",
-            "name": "newAdminRole",
-            "type": "bytes32"
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
           }
         ],
-        "name": "RoleAdminChanged",
+        "name": "OwnershipTransferStarted",
         "type": "event"
       },
       {
@@ -61,49 +55,18 @@ const CONTRACTS_DICTIONARY = {
         "inputs": [
           {
             "indexed": true,
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
-          {
-            "indexed": true,
             "internalType": "address",
-            "name": "account",
+            "name": "previousOwner",
             "type": "address"
           },
           {
             "indexed": true,
             "internalType": "address",
-            "name": "sender",
+            "name": "newOwner",
             "type": "address"
           }
         ],
-        "name": "RoleGranted",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "sender",
-            "type": "address"
-          }
-        ],
-        "name": "RoleRevoked",
+        "name": "OwnershipTransferred",
         "type": "event"
       },
       {
@@ -121,28 +84,9 @@ const CONTRACTS_DICTIONARY = {
       },
       {
         "inputs": [],
-        "name": "DEFAULT_ADMIN_ROLE",
-        "outputs": [
-          {
-            "internalType": "bytes32",
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "WHITELIST_ROLE",
-        "outputs": [
-          {
-            "internalType": "bytes32",
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "stateMutability": "view",
+        "name": "acceptOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
@@ -156,67 +100,6 @@ const CONTRACTS_DICTIONARY = {
         "name": "blacklist",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          }
-        ],
-        "name": "getRoleAdmin",
-        "outputs": [
-          {
-            "internalType": "bytes32",
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "grantRole",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-          }
-        ],
-        "name": "hasRole",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
         "type": "function"
       },
       {
@@ -252,37 +135,34 @@ const CONTRACTS_DICTIONARY = {
         "type": "function"
       },
       {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
           {
             "internalType": "address",
-            "name": "account",
+            "name": "",
             "type": "address"
           }
         ],
-        "name": "renounceRole",
-        "outputs": [],
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
         "type": "function"
       },
       {
-        "inputs": [
-          {
-            "internalType": "bytes32",
-            "name": "role",
-            "type": "bytes32"
-          },
+        "inputs": [],
+        "name": "pendingOwner",
+        "outputs": [
           {
             "internalType": "address",
-            "name": "account",
+            "name": "",
             "type": "address"
           }
         ],
-        "name": "revokeRole",
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "renounceOwnership",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -303,20 +183,14 @@ const CONTRACTS_DICTIONARY = {
       {
         "inputs": [
           {
-            "internalType": "bytes4",
-            "name": "interfaceId",
-            "type": "bytes4"
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
           }
         ],
-        "name": "supportsInterface",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
@@ -338,14 +212,9 @@ const CONTRACTS_DICTIONARY = {
             "internalType": "address",
             "name": "_account",
             "type": "address"
-          },
-          {
-            "internalType": "bytes",
-            "name": "_purefidata",
-            "type": "bytes"
           }
         ],
-        "name": "whitelistForWithKYCPurefi",
+        "name": "whitelistByOwner",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
